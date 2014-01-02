@@ -74,4 +74,41 @@
 	rendercolor(color255): "Render Color" : "255 255 255" : " " 	
 ]
 
+@SolidClass base(Origin) = func_water_analog
+[
+	movedir(vector) : "Move Direction" : "0 0 0" : " "
+	movedistance(float) : "Move Direction" : "100" : " "
+	speed(float) : "Speed" : "100" : " "
+	startposition(float) : "Start Position" : "0" : " "
+	WaveHeight(float) : "Wave Height" : "3.0" : " "
+	sides(sidelist) : "Water Sides"
+]
+
+@SolidClass base(Origin) = trigger_no_wards
+[
+	sides(sidelist) : "Sides"
+]
+
+@PointClass base(Origin, Targetname, Studiomodel, Angles, DXLevelChoice, prop_dynamic_base, BreakableProp, RenderFields, BaseFadeProp, RenderFxChoices) studio( "models/props_structures/tower_good.mdl") = npc_dota_tower
+[
+	ambientfx(string) : "Ambient FX" : "tower_good3_lamp" : " "
+	destdmgamnt_lvl1(integer) : "Damage level 1 amount" : 66 : " "
+	destdmgamnt_lvl2(integer) : "Damage level 2 amount" : 33 : " "
+	destroyfx(string) :  "Destroy FX" : "tower_good3_destroy_lvl3" : " "
+	destroysound(sound) : "Destroy Sound" : "Building_RadiantTower.Destruction" : " "
+	destruction_lvl1(studio) : "Destruction level 1 model" : "models/props_structures/tower_good3_dest_lvl1.mdl" : " "
+	destruction_lvl2(studio) : "Destruction level 2 model" : "models/props_structures/tower_good3_dest_lvl2.mdl" : " "	
+	MapUnitName(string) : "Map Unit Name" : "npc_dota_goodguys_tower1_top" : " "		
+	solid(boolean) : "Solid" : "0" : " "	
+	teamnumber(choices) : "Team" : 2 : " " =
+	[
+		0 : "No Team"
+		1 : "Spectator"
+		2 : "Radiant"
+		3 : "Dire"
+		4 : "Neutral"
+	]
+	vulnerableoncreepspawn(boolean) : "Use Backdoor Protection" : "1" : " "
+]
+
 
