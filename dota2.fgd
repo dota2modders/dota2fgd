@@ -62,3 +62,16 @@
 	specular_color_day(color255) : "Specular Color Day" : "145 101 33" : " "
 	specular_color_night(color255) : "Specular Color Night" : "8 63 34" : " "
 ]
+
+@PointClass base(Origin) = world_bounds
+[
+	max(vector) : "Max Bound" : "640 1280 0" : " "
+	min(vector) : "Min Bound" : "-1024 -1280 0" : " " 
+]
+
+@PointClass base(Origin, Angles, Studiomodel) studio( "models/props_tree/tree_pine_02.mdl" ) = ent_dota_tree
+[	
+	rendercolor(color255): "Render Color" : "255 255 255" : " " 	
+]
+
+
