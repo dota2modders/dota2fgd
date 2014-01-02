@@ -1,0 +1,64 @@
+//====== ===================================================================
+//
+// Purpose: Dota 2 entity defs (.fgd) 
+//
+//=============================================================================
+
+@include "base.fgd"
+
+@PointClass base(Origin) = info_player_start_goodguys
+[
+
+]
+
+@PointClass base(Origin) = info_player_start_badguys
+[
+
+]
+
+@PointClass base(Origin) = ent_dota_game_events
+[
+
+]
+
+@PointClass base(Origin, Targetname) = ent_dota_lightinfo
+[
+	ambient_color_day(color255): "Ambient Day Color" : "23 122 239" : "Ambient Color during the day time"
+	ambient_color_night(color255): "Ambient Night Color" : "23 122 239" : "Ambient Color during the night time"
+	ambient_direction_day(vector) : "Ambient Direction Day" : "0 23 0" : "Direction of the light during the day"
+	ambient_direction_night(vector) : "Ambient Direction Night" : "0 23 0" : "Direction of the light during the night"
+	ambient_scale_day(float) : "Ambient Scale Day": ".35" : " "
+	ambient_scale_night(float): "Ambient Scale Night" : ".35" : " "
+	color_day(color255): "Day Color" : "233 255 214" : " "
+	color_night(color255): "Night Color" : "41 72 180" : " "
+	fog_color_day(color255): "Fog Color Day" : "245 255 220" : " "
+	fog_color_night(color255) : "Fog Color Night" : "150 225 200" : " "
+	fog_end_day(float) : "Fog End Day" : "3000" : " "
+	fog_end_night(float) : "Fog End Night" : "3000" : " "
+	fog_height_day(float): "Fog Height Day" : "0" : " "
+	fog_height_night(float) : "Fog Height Night" : "0" : " " 
+	fog_hight_color_day(color255) : "Fog Height Color Day" : "50 98 69" : " "
+	fog_hight_color_night(color255) : "Fog Height Color Night" : "51 115 109" : " "
+	fog_start_day(float) : "Fog start day" : "1500" : " "
+	fog_start_night(float) : "Fog Start Night" : "1500" : " "
+	fow_color_b_day(float) : "Fog Of War Color Blue Day" : "4" : " "
+	fow_color_b_night(float) : "Fog Of War Color Blue Night" : "4" : " "
+	fow_color_g_day(float) : "Fog Of War Color Green Day" : "3" : " "
+	fow_color_g_night(float) : "Fog Of War Color Green Night" : "3" : " "
+	fow_color_r_day(float) : "Fog Of War Color Red Day" : "0" : " "
+	fow_color_r_night(float) : "Fog Of War Color Red Night" : "0" : " "
+	fow_darkess_day(float) : "Fog Of War Darkness Day" : "2.7" : " "
+	fow_darkess_night(float) : "Fog Of War Darkness Night" : "2.7" : " "
+	inner_radius(float) : "Inner Radius" : "3500" : " "
+	light_direction_day(vector) : "Light Direction Day" : "43 313 0" : " "
+	light_direction_night(vector) : "Light Direction Night" : "43 313 0" : " "
+	outer_radius(float) : "Outer Radius" : "11000" : " "
+	shadow_color_day(color255) : "Shadow Color Day" : "79 194 255" : " "
+	shadow_color_night(color255) : "Shadow Color Night" : "14 89 128" : " "
+	shadow_ground_scale_day(float) : "Shadow Ground Scale Day" : ".2" : " "
+	shadow_ground_scale_night(float) : "Shadow Ground Scale Night" : ".25" : " "
+	shadow_scale_day(float) : "Shadow Scale Day" : ".2" : " "
+	shadow_scale_night(float) : "Shadow Scale Night" : ".25" : " "
+	specular_color_day(color255) : "Specular Color Day" : "145 101 33" : " "
+	specular_color_night(color255) : "Specular Color Night" : "8 63 34" : " "
+]
