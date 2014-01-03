@@ -6,22 +6,27 @@
 
 @include "base.fgd"
 
-@PointClass base(Origin) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_goodguys
+@BaseClass base(Origin, Angles, Targetname) = DotaBase
 [
 
 ]
 
-@PointClass base(Origin) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_badguys
+@PointClass base(DotaBase) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_goodguys
 [
 
 ]
 
-@PointClass base(Origin) = ent_dota_game_events
+@PointClass base(DotaBase) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_badguys
 [
 
 ]
 
-@PointClass base(Origin, Targetname) = ent_dota_lightinfo
+@PointClass base(DotaBase) = ent_dota_game_events
+[
+
+]
+
+@PointClass base(DotaBase) = ent_dota_lightinfo
 [
 	ambient_color_day(color255): "Ambient Day Color" : "23 122 239" : "Ambient Color during the day time"
 	ambient_color_night(color255): "Ambient Night Color" : "23 122 239" : "Ambient Color during the night time"
@@ -63,18 +68,18 @@
 	specular_color_night(color255) : "Specular Color Night" : "8 63 34" : " "
 ]
 
-@PointClass base(Origin) = world_bounds
+@PointClass base(DotaBase) = world_bounds
 [
 	max(vector) : "Max Bound" : "640 1280 0" : " "
 	min(vector) : "Min Bound" : "-1024 -1280 0" : " " 
 ]
 
-@PointClass base(Origin, Angles, Studiomodel) studio() = ent_dota_tree
+@PointClass base(DotaBase, Studiomodel) studio() = ent_dota_tree
 [	
 	rendercolor(color255): "Render Color" : "255 255 255" : " " 	
 ]
 
-@SolidClass base(Origin) = func_water_analog
+@SolidClass base(DotaBase) = func_water_analog
 [
 	movedir(vector) : "Move Direction" : "0 0 0" : " "
 	movedistance(float) : "Move Direction" : "100" : " "
@@ -84,7 +89,7 @@
 	sides(sidelist) : "Water Sides"
 ]
 
-@SolidClass base(Origin) = trigger_no_wards
+@SolidClass base(DotaBase) = trigger_no_wards
 [
 	sides(sidelist) : "Sides"
 ]
@@ -101,7 +106,7 @@
 	]
 ]
 
-@BaseClass base(Origin, Targetname, Studiomodel, Angles, DXLevelChoice, prop_dynamic_base, BreakableProp, RenderFields, BaseFadeProp, RenderFxChoices, DotaTeam) = DotaUnit
+@BaseClass base(DotaBase, prop_dynamic_base, RenderFxChoices, DotaTeam) = DotaUnit
 [
 
 ]
@@ -125,14 +130,14 @@
 	
 ]
 
-@PointClass base(Origin, Targetname, prop_dynamic_base) = ambient_creatures
+@PointClass base(prop_dynamic_base) = ambient_creatures
 [			
 	ScriptedMovement(boolean) : "Use Scripted Movement" : "0" : " "	
 	showatday(boolean) : "Show at Day" : "0" : " "
 	showatnight(boolean) : "Show at Night" : "1" : " "	
 ]
 
-@PointClass base(Origin, Angles, Targetname) = path_corner
+@PointClass base(DotaBase) = path_corner
 [
 	yaw_speed(float) : "Yaw Speed" : "0" : " "
 	wait(float): "Wait Time" : "0" : " "	
@@ -141,23 +146,23 @@
 	spawnflags(integer) : "Spawn Flags" : 0 : " "
 ]
 
-@PointClass base(Origin) = info_courier_spawn_radiant
+@PointClass base(DotaBase) = info_courier_spawn_radiant
 [
 	
 ]
 
-@PointClass base(Origin) = info_courier_spawn_dire
+@PointClass base(DotaBase) = info_courier_spawn_dire
 [
 	
 ]
 
-@PointClass base(DotaTeam, Targetname, Angles, Origin) = npc_dota_scripted_spawner
+@PointClass base(DotaTeam, DotaBase) = npc_dota_scripted_spawner
 [
-	NPCType(integer) : "NPC Type" : "0" : " "
+	NPCType(integer) : "NPC Type" : 0 : " "
 	NPCFirstWaypoint(target_destination) : "NPC First Waypoint" : "" : " "
 ]
 
-@PointClass base(Origin, Targetname) iconsprite("materials/vgui/achievements/dota_multiple_runes.vtf") = dota_item_rune_spawner
+@PointClass base(DotaBase) iconsprite("materials/vgui/achievements/dota_multiple_runes.vtf") = dota_item_rune_spawner
 [
 
 ]
@@ -167,7 +172,7 @@
 	
 ]
 
-@SolidClass base(Origin, EnableDisable) = trigger_shop
+@SolidClass base(DotaBase, EnableDisable) = trigger_shop
 [
 	spawnflags(integer) : "Spawn Flags" : 4097 : " "
 	shoptype(choices) : "Shop Type" : 0 : " " =
@@ -176,11 +181,136 @@
 		1 : "Side Shop"
 		2 : "Secret Shop"
 	]
-	
-	sides(sidelist) : "Sides"
 ]
 
+@PointClass base(DotaBase) = ent_fow_blocker_node
+[
 
+]
 
+@PointClass base(DotaBase) = dota_minimap_boundary
+[
 
+]
+
+@SolidClass base(DotaBase, RenderFields) = func_precipitation
+[
+	preciptype(choices) : "Percipitation Type" : 7 : " " =
+	[
+		0 : "Unknown0"
+		1 : "Unknwon1"
+		2 : "Unknown2"
+		3 : "Unknwon3"
+		4 : "Unknown4"
+		5 : "Unknwon5"
+		6 : "Unknown6"
+		7 : "Unknwon7"
+	]
+	minSpeed(integer) : "Min Speed" : 25 : " "
+	maxSpeed(integer) : "Max Speed" : 35 : " "
+]
+
+@PointClass base(DotaBase, RenderFields) iconsprite("editor/light.vtf") = env_deferred_light
+[
+	start_falloff(float) : "Start Falloff" : ".15" : " "
+	radius(float) : "Radius" : "512" : " "
+	lightcolor(color255) : "Light Color" : "18 222 120" : " "
+	intensity(float) : "Intensity" : ".5" : " "
+	spot_light_distance(float) : "Spot Light Distance" : "10" : " "
+	spot_fov(float) : "Spot Light FOV" : "180" : " "
+	distance_falloff(float) : "Distance Falloff" : "10" : " "
+	
+	input TurnOn(void)
+	input TurnOff(void)
+    input LightColor(color255)
+	input Intensity(float)
+	input Radius(float)
+]
+
+@PointClass base(prop_dynamic_base) studio() = prop_dynamic_clientside
+[
+
+]
+
+@PointClass base(prop_dynamic_base) iconsprite("editor/env_particles.vtf") = dota_world_particle_system
+[
+	start_active(boolean) : "Start Active" : "1" : " "
+	showatnight(boolean) : "Show At Night" : "1" : " "
+	showatday(boolean) : "Show at day" : "1" : " "
+	effect_name(string) : "Particle Name" : "blueTorch_flame" : " "
+	dotaworldtype(integer) : "Dota world type" : 1 : " "
+	cpoint0(string) : "Control Point 0" : "" : " "
+	cpoint1(string) : "Control Point 1" : "" : " "
+	cpoint2(string) : "Control Point 2" : "" : " "
+	cpoint3(string) : "Control Point 3" : "" : " "
+	cpoint4(string) : "Control Point 4" : "" : " "
+	cpoint5(string) : "Control Point 5" : "" : " "
+	cpoint6(string) : "Control Point 6" : "" : " "
+	cpoint7(string) : "Control Point 7" : "" : " "
+	cpoint8(string) : "Control Point 8" : "" : " "
+	cpoint9(string) : "Control Point 9" : "" : " "
+	cpoint10(string) : "Control Point 10" : "" : " "
+	cpoint11(string) : "Control Point 11" : "" : " "
+	cpoint12(string) : "Control Point 12" : "" : " "
+	cpoint13(string) : "Control Point 13" : "" : " "
+	cpoint14(string) : "Control Point 14" : "" : " "
+	cpoint15(string) : "Control Point 15" : "" : " "
+	cpoint16(string) : "Control Point 16" : "" : " "
+	cpoint17(string) : "Control Point 17" : "" : " "
+	cpoint18(string) : "Control Point 18" : "" : " "
+	cpoint19(string) : "Control Point 19" : "" : " "
+	cpoint20(string) : "Control Point 20" : "" : " "
+	cpoint21(string) : "Control Point 21" : "" : " "
+	cpoint22(string) : "Control Point 22" : "" : " "
+	cpoint23(string) : "Control Point 23" : "" : " "
+	cpoint24(string) : "Control Point 24" : "" : " "
+	cpoint25(string) : "Control Point 25" : "" : " "
+	cpoint26(string) : "Control Point 26" : "" : " "
+	cpoint27(string) : "Control Point 27" : "" : " "
+	cpoint28(string) : "Control Point 28" : "" : " "
+	cpoint29(string) : "Control Point 29" : "" : " "
+	cpoint30(string) : "Control Point 30" : "" : " "
+	cpoint31(string) : "Control Point 31" : "" : " "
+	cpoint32(string) : "Control Point 32" : "" : " "
+	cpoint33(string) : "Control Point 33" : "" : " "
+	cpoint34(string) : "Control Point 34" : "" : " "
+	cpoint35(string) : "Control Point 35" : "" : " "
+	cpoint36(string) : "Control Point 36" : "" : " "
+	cpoint37(string) : "Control Point 37" : "" : " "
+	cpoint38(string) : "Control Point 38" : "" : " "
+	cpoint39(string) : "Control Point 39" : "" : " "
+	cpoint40(string) : "Control Point 40" : "" : " "
+	cpoint41(string) : "Control Point 41" : "" : " "
+	cpoint42(string) : "Control Point 42" : "" : " "
+	cpoint43(string) : "Control Point 43" : "" : " "
+	cpoint44(string) : "Control Point 44" : "" : " "
+	cpoint45(string) : "Control Point 45" : "" : " "
+	cpoint46(string) : "Control Point 46" : "" : " "
+	cpoint47(string) : "Control Point 47" : "" : " "
+	cpoint48(string) : "Control Point 48" : "" : " "
+	cpoint49(string) : "Control Point 49" : "" : " "
+	cpoint50(string) : "Control Point 50" : "" : " "
+	cpoint51(string) : "Control Point 51" : "" : " "
+	cpoint52(string) : "Control Point 52" : "" : " "
+	cpoint53(string) : "Control Point 53" : "" : " "
+	cpoint54(string) : "Control Point 54" : "" : " "
+	cpoint55(string) : "Control Point 55" : "" : " "
+	cpoint56(string) : "Control Point 56" : "" : " "
+	cpoint57(string) : "Control Point 57" : "" : " "
+	cpoint58(string) : "Control Point 58" : "" : " "
+	cpoint59(string) : "Control Point 59" : "" : " "
+	cpoint60(string) : "Control Point 60" : "" : " "
+	cpoint61(string) : "Control Point 61" : "" : " "
+	cpoint62(string) : "Control Point 62" : "" : " "
+	cpoint63(string) : "Control Point 63" : "" : " "
+	
+	cpoint1_parent(integer) : "Control Point 1 Parent" : 0 : " "
+	cpoint2_parent(integer) : "Control Point 2 Parent" : 0 : " "
+	cpoint3_parent(integer) : "Control Point 3 Parent" : 0 : " "
+	cpoint4_parent(integer) : "Control Point 4 Parent" : 0 : " "
+	cpoint5_parent(integer) : "Control Point 5 Parent" : 0 : " "
+	cpoint6_parent(integer) : "Control Point 6 Parent" : 0 : " "
+	cpoint7_parent(integer) : "Control Point 7 Parent" : 0 : " "
+
+]
 
