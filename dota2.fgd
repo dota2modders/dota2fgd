@@ -11,12 +11,12 @@
 
 ]
 
-@PointClass base(DotaBase) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_goodguys
+@PointClass base(DotaBase) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") color(0 255 0) = info_player_start_goodguys
 [
 
 ]
 
-@PointClass base(DotaBase) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_badguys
+@PointClass base(DotaBase) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") color(255 0 0) = info_player_start_badguys
 [
 
 ]
@@ -210,7 +210,7 @@
 	maxSpeed(integer) : "Max Speed" : 35 : " "
 ]
 
-@PointClass base(DotaBase, RenderFields) iconsprite("editor/light.vtf") = env_deferred_light
+@PointClass base(DotaBase, RenderFields) iconsprite("editor/light.vtf") sphere() = env_deferred_light
 [
 	start_falloff(float) : "Start Falloff" : ".15" : " "
 	radius(float) : "Radius" : "512" : " "
