@@ -89,7 +89,7 @@
 	sides(sidelist) : "Sides"
 ]
 
-@BaseClass base(Origin, Targetname, Studiomodel, Angles, DXLevelChoice, prop_dynamic_base, BreakableProp, RenderFields, BaseFadeProp, RenderFxChoices) = DotaUnit
+@BaseClass = DotaTeam
 [
 	teamnumber(choices) : "Team" : 2 : " " =
 	[
@@ -101,18 +101,28 @@
 	]
 ]
 
-@PointClass base(DotaUnit) studio() = npc_dota_tower
+@BaseClass base(Origin, Targetname, Studiomodel, Angles, DXLevelChoice, prop_dynamic_base, BreakableProp, RenderFields, BaseFadeProp, RenderFxChoices, DotaTeam) = DotaUnit
+[
+
+]
+
+@BaseClass base(DotaUnit) = DotaBuilding
 [
 	ambientfx(string) : "Ambient FX" : "tower_good3_lamp" : " "
 	destdmgamnt_lvl1(integer) : "Damage level 1 amount" : 66 : " "
 	destdmgamnt_lvl2(integer) : "Damage level 2 amount" : 33 : " "
 	destroyfx(string) :  "Destroy FX" : "tower_good3_destroy_lvl3" : " "
 	destroysound(sound) : "Destroy Sound" : "Building_RadiantTower.Destruction" : " "
-	destruction_lvl1(studio) : "Destruction level 1 model" : "models/props_structures/tower_good3_dest_lvl1.mdl" : " "
-	destruction_lvl2(studio) : "Destruction level 2 model" : "models/props_structures/tower_good3_dest_lvl2.mdl" : " "	
-	MapUnitName(string) : "Map Unit Name" : "npc_dota_goodguys_tower1_top" : " "		
+	destruction_lvl1(studio) : "Destruction level 1 model" : " " : " "
+	destruction_lvl2(studio) : "Destruction level 2 model" : " " : " "	
+	MapUnitName(string) : "Map Unit Name" : " " : " "		
 	solid(boolean) : "Solid" : "0" : " "		
 	vulnerableoncreepspawn(boolean) : "Use Backdoor Protection" : "1" : " "
+]
+
+@PointClass base(DotaBuilding) studio() = npc_dota_tower
+[
+	
 ]
 
 @PointClass base(Origin, Targetname, prop_dynamic_base) = ambient_creatures
@@ -121,6 +131,56 @@
 	showatday(boolean) : "Show at Day" : "0" : " "
 	showatnight(boolean) : "Show at Night" : "1" : " "	
 ]
+
+@PointClass base(Origin, Angles, Targetname) = path_corner
+[
+	yaw_speed(float) : "Yaw Speed" : "0" : " "
+	wait(float): "Wait Time" : "0" : " "	
+	target(target_destination) : "Target" : "" : " "
+	speed(float) : "Speed" : "0" : " "
+	spawnflags(integer) : "Spawn Flags" : 0 : " "
+]
+
+@PointClass base(Origin) = info_courier_spawn_radiant
+[
+	
+]
+
+@PointClass base(Origin) = info_courier_spawn_dire
+[
+	
+]
+
+@PointClass base(DotaTeam, Targetname, Angles, Origin) = npc_dota_scripted_spawner
+[
+	NPCType(integer) : "NPC Type" : "0" : " "
+	NPCFirstWaypoint(target_destination) : "NPC First Waypoint" : "" : " "
+]
+
+@PointClass base(Origin, Targetname) iconsprite("materials/vgui/achievements/dota_multiple_runes.vtf") = dota_item_rune_spawner
+[
+
+]
+
+@PointClass base(DotaBuilding) studio() = npc_dota_fort
+[
+	
+]
+
+@SolidClass base(Origin, EnableDisable) = trigger_shop
+[
+	spawnflags(integer) : "Spawn Flags" : 4097 : " "
+	shoptype(choices) : "Shop Type" : 0 : " " =
+	[
+		0 : "Default"
+		1 : "Side Shop"
+		2 : "Secret Shop"
+	]
+	
+	sides(sidelist) : "Sides"
+]
+
+
 
 
 
