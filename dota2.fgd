@@ -6,12 +6,12 @@
 
 @include "base.fgd"
 
-@PointClass base(Origin) = info_player_start_goodguys
+@PointClass base(Origin) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_goodguys
 [
 
 ]
 
-@PointClass base(Origin) = info_player_start_badguys
+@PointClass base(Origin) studio("models/heroes/ancient_apparition/ancient_apparition.mdl") = info_player_start_badguys
 [
 
 ]
@@ -69,7 +69,7 @@
 	min(vector) : "Min Bound" : "-1024 -1280 0" : " " 
 ]
 
-@PointClass base(Origin, Angles, Studiomodel) studio( "models/props_tree/tree_pine_02.mdl" ) = ent_dota_tree
+@PointClass base(Origin, Angles, Studiomodel) studio() = ent_dota_tree
 [	
 	rendercolor(color255): "Render Color" : "255 255 255" : " " 	
 ]
@@ -89,7 +89,19 @@
 	sides(sidelist) : "Sides"
 ]
 
-@PointClass base(Origin, Targetname, Studiomodel, Angles, DXLevelChoice, prop_dynamic_base, BreakableProp, RenderFields, BaseFadeProp, RenderFxChoices) studio( "models/props_structures/tower_good.mdl") = npc_dota_tower
+@BaseClass base(Origin, Targetname, Studiomodel, Angles, DXLevelChoice, prop_dynamic_base, BreakableProp, RenderFields, BaseFadeProp, RenderFxChoices) = DotaUnit
+[
+	teamnumber(choices) : "Team" : 2 : " " =
+	[
+		0 : "No Team"
+		1 : "Spectator"
+		2 : "Radiant"
+		3 : "Dire"
+		4 : "Neutral"
+	]
+]
+
+@PointClass base(DotaUnit) studio() = npc_dota_tower
 [
 	ambientfx(string) : "Ambient FX" : "tower_good3_lamp" : " "
 	destdmgamnt_lvl1(integer) : "Damage level 1 amount" : 66 : " "
@@ -99,16 +111,16 @@
 	destruction_lvl1(studio) : "Destruction level 1 model" : "models/props_structures/tower_good3_dest_lvl1.mdl" : " "
 	destruction_lvl2(studio) : "Destruction level 2 model" : "models/props_structures/tower_good3_dest_lvl2.mdl" : " "	
 	MapUnitName(string) : "Map Unit Name" : "npc_dota_goodguys_tower1_top" : " "		
-	solid(boolean) : "Solid" : "0" : " "	
-	teamnumber(choices) : "Team" : 2 : " " =
-	[
-		0 : "No Team"
-		1 : "Spectator"
-		2 : "Radiant"
-		3 : "Dire"
-		4 : "Neutral"
-	]
+	solid(boolean) : "Solid" : "0" : " "		
 	vulnerableoncreepspawn(boolean) : "Use Backdoor Protection" : "1" : " "
 ]
+
+@PointClass base(Origin, Targetname, prop_dynamic_base) = ambient_creatures
+[			
+	ScriptedMovement(boolean) : "Use Scripted Movement" : "0" : " "	
+	showatday(boolean) : "Show at Day" : "0" : " "
+	showatnight(boolean) : "Show at Night" : "1" : " "	
+]
+
 
 
