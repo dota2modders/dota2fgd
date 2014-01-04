@@ -86,12 +86,10 @@
 	speed(float) : "Speed" : "100" : " "
 	startposition(float) : "Start Position" : "0" : " "
 	WaveHeight(float) : "Wave Height" : "3.0" : " "
-	sides(sidelist) : "Water Sides"
 ]
 
-@SolidClass base(DotaBase) = trigger_no_wards
+@SolidClass base(Trigger) = trigger_no_wards
 [
-	sides(sidelist) : "Sides"
 ]
 
 @BaseClass = DotaTeam
@@ -130,8 +128,35 @@
 	
 ]
 
+@PointClass base(DotaBuilding) studio() = npc_dota_barracks
+[
+
+]
+
+@PointClass base(DotaBuilding) studio() = npc_dota_fort
+[
+	
+]
+
+@PointClass base(DotaBuilding) studio() = npc_dota_building
+[
+
+]
+
+@PointClass base(DotaBuilding) studio() = ent_dota_fountain
+[
+
+]
+
 @PointClass base(prop_dynamic_base) = ambient_creatures
 [			
+	ScriptedMovement(boolean) : "Use Scripted Movement" : "0" : " "	
+	showatday(boolean) : "Show at Day" : "0" : " "
+	showatnight(boolean) : "Show at Night" : "1" : " "	
+]
+
+@SolidClass base(prop_dynamic_base) = ambient_creatures_zone
+[
 	ScriptedMovement(boolean) : "Use Scripted Movement" : "0" : " "	
 	showatday(boolean) : "Show at Day" : "0" : " "
 	showatnight(boolean) : "Show at Night" : "1" : " "	
@@ -156,31 +181,29 @@
 	
 ]
 
-@PointClass base(DotaTeam, DotaBase) = npc_dota_scripted_spawner
-[
-	NPCType(integer) : "NPC Type" : 0 : " "
-	NPCFirstWaypoint(target_destination) : "NPC First Waypoint" : "" : " "
-]
 
 @PointClass base(DotaBase) iconsprite("materials/vgui/achievements/dota_multiple_runes.vtf") = dota_item_rune_spawner
 [
 
 ]
 
-@PointClass base(DotaBuilding) studio() = npc_dota_fort
+@BaseClass base(DotaBase) = BaseShop
 [
-	
-]
-
-@SolidClass base(DotaBase, EnableDisable) = trigger_shop
-[
-	spawnflags(integer) : "Spawn Flags" : 4097 : " "
 	shoptype(choices) : "Shop Type" : 0 : " " =
 	[
 		0 : "Default"
 		1 : "Side Shop"
 		2 : "Secret Shop"
 	]
+]
+
+@SolidClass base(BaseShop, EnableDisable, Trigger) = trigger_shop
+[
+]
+
+@PointClass base(BaseShop, prop_dynamic_base) = ent_dota_shop
+[
+	
 ]
 
 @PointClass base(DotaBase) = ent_fow_blocker_node
@@ -210,14 +233,13 @@
 	maxSpeed(integer) : "Max Speed" : 35 : " "
 ]
 
-@PointClass base(DotaBase, RenderFields) iconsprite("editor/light.vtf") sphere() = env_deferred_light
+@BaseClass base(DotaBase, RenderFields) iconsprite("editor/light.vtf) sphere() = deferred_light_base
 [
 	start_falloff(float) : "Start Falloff" : ".15" : " "
 	radius(float) : "Radius" : "512" : " "
 	lightcolor(color255) : "Light Color" : "18 222 120" : " "
 	intensity(float) : "Intensity" : ".5" : " "
-	spot_light_distance(float) : "Spot Light Distance" : "10" : " "
-	spot_fov(float) : "Spot Light FOV" : "180" : " "
+	
 	distance_falloff(float) : "Distance Falloff" : "10" : " "
 	
 	input TurnOn(void)
@@ -226,6 +248,18 @@
 	input Intensity(float)
 	input Radius(float)
 ]
+
+@PointClass base(deferred_light_base) iconsprite("editor/light.vtf") sphere() = env_deferred_light
+[	
+]
+
+@PointClass base(deferred_light_base) iconsprite("editor/light.vtf") sphere() = env_deferred_spot_light
+[	
+	spot_light_distance(float) : "Spot Light Distance" : "10" : " "
+	spot_fov(float) : "Spot Light FOV" : "180" : " "	
+]
+
+
 
 @PointClass base(prop_dynamic_base) studio() = prop_dynamic_clientside
 [
@@ -312,5 +346,95 @@
 	cpoint6_parent(integer) : "Control Point 6 Parent" : 0 : " "
 	cpoint7_parent(integer) : "Control Point 7 Parent" : 0 : " "
 
+]
+
+@PointEntity base(DotaBase, DotaTeam, prop_dynamic_base) studio() = dota_prop_customtexture
+[
+
+]
+
+@SolidEntity base(Origin, EnableDisable, Trigger) = trigger_boss_attackable
+[
+]
+
+@PointClass base(DotaBase) = npc_dota_neutral_spawner
+[
+	VolumeName(target_destination) : "Spawn Box Name" : "" : "Target func_trigger for determining if a unit is nearby to decide when to spawn a unit"
+	NeutralType(choices) : "Neutral Camp Type" : 0 : " " =
+	[
+		0 : "Easy Camp"
+		1 : "Medium Camp"
+		2 : "Hard Camp"
+		3 : "Ancients"
+	]
+	ForcedSubType(choices) : "Forced Sub Type" : 0 : " "
+	[
+		-1 : "Any"
+		0 : "Type0"
+		1 : "Type1"
+		2 : "Type2"
+		3 : "Type3"
+		4 : "Type4"
+		5 : "Type5"
+	]
+	BatchLimit(integer) : "Batch Limit" : 5 : " "
+	
+	output OnSpawnerExhausted(void) : "Fires when the spawner is exhausted"
+]
+
+@PointClass base(prop_dynamic_base) = ent_dota_halloffame
+[
+
+]
+
+@BaseClass base(Origin, Targetname, DotaTeam) = DotaSpawnerBase
+[
+	NPCScriptName(string) : "NPC Script Name" : "" : " "
+	NPCUniqueName(string) : "NPC Unique Name" : "" : " "
+	NPCFirstWaypoint(target_destination) : "First Waypoint" : "" : "Must target a path_corner"
+	lane(choices) : "Lane" : 0 : " " =
+	[
+		0 : "Top"
+		1 : "Mid"
+		2 : "Bottom"
+	]
+]
+
+@PointClass base(DotaSpawnerBase) = npc_dota_scripted_spawner
+[	
+]
+
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner
+[	
+]
+
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner_good_bot 
+[
+]
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner_good_mid 
+[
+]
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner_good_top 
+[
+]
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner_bad_bot 
+[
+]
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner_bad_top 
+[
+]
+@PointClass base(DotaSpawnerBase) = npc_dota_spawner_bad_mid 
+[
+]
+@PointClass base(DotaBase)  = npc_dota_roshan_spawner
+[
+
+]
+
+@PointClass base(DotaBase, EnableDisable) = tutorial_npc_blocker
+[	
+	other_blocker(target_destination) : "Other Blocker" : "" : " "
+	Hidden(boolean) : "Hidden" : 1 : " "		
+	input Toggle(void)
 ]
 
