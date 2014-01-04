@@ -233,7 +233,7 @@
 	maxSpeed(integer) : "Max Speed" : 35 : " "
 ]
 
-@BaseClass base(DotaBase, RenderFields) iconsprite("editor/light.vtf) sphere() = deferred_light_base
+@BaseClass base(DotaBase, RenderFields) = deferred_light_base
 [
 	start_falloff(float) : "Start Falloff" : ".15" : " "
 	radius(float) : "Radius" : "512" : " "
@@ -348,12 +348,12 @@
 
 ]
 
-@PointEntity base(DotaBase, DotaTeam, prop_dynamic_base) studio() = dota_prop_customtexture
+@PointClass base(DotaBase, DotaTeam, prop_dynamic_base) studio() = dota_prop_customtexture
 [
 
 ]
 
-@SolidEntity base(Origin, EnableDisable, Trigger) = trigger_boss_attackable
+@SolidClass base(Origin, EnableDisable, Trigger) = trigger_boss_attackable
 [
 ]
 
@@ -367,7 +367,7 @@
 		2 : "Hard Camp"
 		3 : "Ancients"
 	]
-	ForcedSubType(choices) : "Forced Sub Type" : 0 : " "
+	ForcedSubType(choices) : "Forced Sub Type" : 0 : " " =
 	[
 		-1 : "Any"
 		0 : "Type0"
