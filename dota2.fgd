@@ -6,6 +6,11 @@
 
 @include "base.fgd"
 
+
+@gridnav(64, 32, 32, 3500)
+
+
+
 @BaseClass base(Origin, Angles, Targetname) = DotaBase
 [
 
@@ -21,53 +26,69 @@
 
 ]
 
-@PointClass base(DotaBase) = ent_dota_game_events
+@PointClass base(Targetname) = ent_dota_game_events : 
+	"An entity that fires outputs based on game events."
 [
-
+	// Outputs
+	output OnDayStarted(void) : "Fired when the day starts."
+	output OnNightStarted(void) : "Fired when the night starts."
 ]
 
-@PointClass base(DotaBase) = ent_dota_lightinfo
+@PointClass base(Targetname) sphere(inner_radius) sphere(outer_radius) = ent_dota_lightinfo: 
+	"An entity that controls the global light."
 [
-	ambient_color_day(color255): "Ambient Day Color" : "23 122 239" : "Ambient Color during the day time"
-	ambient_color_night(color255): "Ambient Night Color" : "23 122 239" : "Ambient Color during the night time"
-	ambient_direction_day(vector) : "Ambient Direction Day" : "0 23 0" : "Direction of the light during the day"
-	ambient_direction_night(vector) : "Ambient Direction Night" : "0 23 0" : "Direction of the light during the night"
-	ambient_scale_day(float) : "Ambient Scale Day": ".35" : " "
-	ambient_scale_night(float): "Ambient Scale Night" : ".35" : " "
-	color_day(color255): "Day Color" : "233 255 214" : " "
-	color_night(color255): "Night Color" : "41 72 180" : " "
-	fog_color_day(color255): "Fog Color Day" : "245 255 220" : " "
-	fog_color_night(color255) : "Fog Color Night" : "150 225 200" : " "
-	fog_end_day(float) : "Fog End Day" : "3000" : " "
-	fog_end_night(float) : "Fog End Night" : "3000" : " "
-	fog_height_day(float): "Fog Height Day" : "0" : " "
-	fog_height_night(float) : "Fog Height Night" : "0" : " " 
-	fog_hight_color_day(color255) : "Fog Height Color Day" : "50 98 69" : " "
-	fog_hight_color_night(color255) : "Fog Height Color Night" : "51 115 109" : " "
-	fog_start_day(float) : "Fog start day" : "1500" : " "
-	fog_start_night(float) : "Fog Start Night" : "1500" : " "
-	fow_color_b_day(float) : "Fog Of War Color Blue Day" : "4" : " "
-	fow_color_b_night(float) : "Fog Of War Color Blue Night" : "4" : " "
-	fow_color_g_day(float) : "Fog Of War Color Green Day" : "3" : " "
-	fow_color_g_night(float) : "Fog Of War Color Green Night" : "3" : " "
-	fow_color_r_day(float) : "Fog Of War Color Red Day" : "0" : " "
-	fow_color_r_night(float) : "Fog Of War Color Red Night" : "0" : " "
-	fow_darkess_day(float) : "Fog Of War Darkness Day" : "2.7" : " "
-	fow_darkess_night(float) : "Fog Of War Darkness Night" : "2.7" : " "
-	inner_radius(float) : "Inner Radius" : "3500" : " "
-	light_direction_day(vector) : "Light Direction Day" : "43 313 0" : " "
-	light_direction_night(vector) : "Light Direction Night" : "43 313 0" : " "
-	outer_radius(float) : "Outer Radius" : "11000" : " "
-	shadow_color_day(color255) : "Shadow Color Day" : "79 194 255" : " "
-	shadow_color_night(color255) : "Shadow Color Night" : "14 89 128" : " "
-	shadow_ground_scale_day(float) : "Shadow Ground Scale Day" : ".2" : " "
-	shadow_ground_scale_night(float) : "Shadow Ground Scale Night" : ".25" : " "
-	shadow_scale_day(float) : "Shadow Scale Day" : ".2" : " "
-	shadow_scale_night(float) : "Shadow Scale Night" : ".25" : " "
-	specular_color_day(color255) : "Specular Color Day" : "145 101 33" : " "
-	specular_color_night(color255) : "Specular Color Night" : "8 63 34" : " "
-]
+	color_day(color255) : "Color - Day" : "0 0 0" : "Daytime color."
+	color_dusk(color255) : "Color - Dusk" : "0 0 0" : "Dusk color."
+	color_night(color255) : "Color - Night" : "0 0 0" : "Nighttime color."
+	color_dawn(color255) : "Color - Dawn" : "0 0 0" : "Dawn color."
+	ambient_color_day(color255) : "Ambient Color - Day" : "0 0 0" : "Ambient Daytime color."
+	ambient_color_dusk(color255) : "Ambient Color - Dusk" : "0 0 0" : "Ambient Dusk color."
+	ambient_color_night(color255) : "Ambient Color - Night" : "0 0 0" : "Ambient Nighttime color."
+	ambient_color_dawn(color255) : "Ambient Color - Dawn" : "0 0 0" : "Ambient Dawn color."
+	ambient_scale_day(float) : "Ambient Scale - Day" : "0" : "Ambient Daytime scale."
+	ambient_scale_dusk(float) : "Ambient Scale - Dusk" : "0" : "Ambient Dusk scale."
+	ambient_scale_night(float) : "Ambient Scale - Night" : "0" : "Ambient Nighttime scale."
+	ambient_scale_dawn(float) : "Ambient Scale - Dawn" : "0" : "Ambient Dawn scale."
+	shadow_color_day(color255) : "Shadow Color - Day" : "0 0 0" : "Shadow Daytime color."
+	shadow_color_dusk(color255) : "Shadow Color - Dusk" : "0 0 0" : "Shadow Dusk color."
+	shadow_color_night(color255) : "Shadow Color - Night" : "0 0 0" : "Shadow Nighttime color."
+	shadow_color_dawn(color255) : "Shadow Color - Dawn" : "0 0 0" : "Shadow Dawn color."
+	shadow_scale_day(float) : "Shadow Scale - Day" : "0" : "Shadow Daytime scale."
+	shadow_scale_dusk(float) : "Shadow Scale - Dusk" : "0" : "Shadow Dusk scale."
+	shadow_scale_night(float) : "Shadow Scale - Night" : "0" : "Shadow Nighttime scale."
+	shadow_scale_dawn(float) : "Shadow Scale - Dawn" : "0" : "Shadow Dawn scale."
+	shadow_ground_scale_day(float) : "Shadow Ground Scale - Day" : "0" : "Shadow Daytime ground scale."
+	shadow_ground_scale_dusk(float) : "Shadow Ground Scale - Dusk" : "0" : "Shadow Dusk ground scale."
+	shadow_ground_scale_night(float) : "Shadow Ground Scale - Night" : "0" : "Shadow Nighttime ground scale."
+	shadow_ground_scale_dawn(float) : "Shadow Ground Scale - Dawn" : "0" : "Shadow Dawn ground scale."
+	specular_color_day(color255) : "Specular Color - Day" : "0 0 0" : "Specular Daytime color."
+	specular_color_dusk(color255) : "Specular Color - Dusk" : "0 0 0" : "Specular Dusk color."
+	specular_color_night(color255) : "Specular Color - Night" : "0 0 0" : "Specular Nighttime color."
+	specular_color_dawn(color255) : "Specular Color - Dawn" : "0 0 0" : "Specular Dawn color."
+	light_direction_day(vector) : "Light Direction - Day" : "0 0 0" : "Light Daytime direction."
+	light_direction_dawn(vector) : "Light Direction - Dusk" : "0 0 0" : "Light Dusk direction."
+	light_direction_night(vector) : "Light Direction - Night" : "0 0 0" : "Light Nighttime direction."
+	light_direction_dusk(vector) : "Light Direction - Dawn" : "0 0 0" : "Light Dawn direction."
+	ambient_direction_day(vector) : "Ambient Direction - Day" : "0 0 0" : "Ambient Daytime direction."
+	ambient_direction_dawn(vector) : "Ambient Direction - Dusk" : "0 0 0" : "Ambient Dusk direction."
+	ambient_direction_night(vector) : "Ambient Direction - Night" : "0 0 0" : "Ambient Nighttime direction."
+	ambient_direction_dusk(vector) : "Ambient Direction - Dawn" : "0 0 0" : "Ambient Dawn direction."
+	fog_color_day(color255) : "Fog Color - Day" : "0 0 0" : "Fog Daytime color."
+	fog_color_dusk(color255) : "Fog Color - Dusk" : "0 0 0" : "Fog Dusk color."
+	fog_color_night(color255) : "Fog Color - Night" : "0 0 0" : "Fog Nighttime color."
+	fog_color_dawn(color255) : "Fog Color - Dawn" : "0 0 0" : "Fog Dawn color."
+	fog_start_day(float) : "Fog Start - Day" : "0" : "Daytime Fog Start distance."
+	fog_start_dusk(float) : "Fog Start - Dusk" : "0" : "Dusk Fog Start distance."
+	fog_start_night(float) : "Fog Start - Night" : "0" : "Night Fog Start distance."
+	fog_start_dawn(float) : "Fog Start - Dawn" : "0" : "Dawn Fog Start distance."
+	fog_end_day(float) : "Fog End - Day" : "0" : "Daytime Fog Start distance."
+	fog_end_dusk(float) : "Fog End - Dusk" : "0" : "Dusk Fog End distance."
+	fog_end_night(float) : "Fog End - Night" : "0" : "Night Fog End distance."
+	fog_end_dawn(float) : "Fog End - Dawn" : "0" : "Dawn Fog End distance."
 
+	inner_radius(float) : "Inner Radius" : "0" : "Radius inside which the global light is exactly the specified color."
+	outer_radius(float) : "Outer Radius" : "0" : "Radius inside which the global light is partially the specified color."
+]	
 @PointClass base(DotaBase) = world_bounds
 [
 	max(vector) : "Max Bound" : "640 1280 0" : " "
@@ -75,8 +96,9 @@
 ]
 
 @PointClass base(DotaBase, Studiomodel) studio() = ent_dota_tree
-[	
-	rendercolor(color255): "Render Color" : "255 255 255" : " " 	
+[			
+	targetname(target_source) : "Name" : "dota_item_rune_spawner" : "The name that other entities refer to this entity by."
+	base(integer) : "Base" : 1 : "Needs to be 1 to work correctly"
 ]
 
 @SolidClass base(DotaBase) = func_water_analog
@@ -121,6 +143,10 @@
 	MapUnitName(string) : "Map Unit Name" : " " : " "		
 	solid(boolean) : "Solid" : "0" : " "		
 	vulnerableoncreepspawn(boolean) : "Use Backdoor Protection" : "1" : " "
+	
+	invuln_count(integer):"Invulnerability Link Count" : 0 : "The number of entities linked to this to trigger to remove invulnerability."
+	link(string) : "Linked" : " " : "The Linked Unit."	
+	 
 ]
 
 @PointClass base(DotaBuilding) studio() = npc_dota_tower
@@ -130,7 +156,22 @@
 
 @PointClass base(DotaBuilding) studio() = npc_dota_barracks
 [
-
+	upgrade_level(choices) :"Upgrade Category" : 0 =
+		[
+			0: "UPGRADED_NONE"
+			1: "UPGRADED_BAD_BOTTOM_MELEE"
+			2: "UPGRADED_BAD_BOTTOM_RANGE"
+			4: "UPGRADED_BAD_MID_MELEE"
+			8: "UPGRADED_BAD_MID_RANGE"
+			16: "UPGRADED_BAD_TOP_MELEE"
+			32: "UPGRADED_BAD_TOP_RANGE"
+			64: "UPGRADED_GOOD_BOTTOM_MELEE"
+			128: "UPGRADED_GOOD_BOTTOM_RANGE"
+			256: "UPGRADED_GOOD_MID_MELEE"
+			512: "UPGRADED_GOOD_MID_RANGE"
+			1024: "UPGRADED_GOOD_TOP_MELEE"
+			2048: "UPGRADED_GOOD_TOP_RANGE"
+		]
 ]
 
 @PointClass base(DotaBuilding) studio() = npc_dota_fort
@@ -392,12 +433,7 @@
 	NPCScriptName(string) : "NPC Script Name" : "" : " "
 	NPCUniqueName(string) : "NPC Unique Name" : "" : " "
 	NPCFirstWaypoint(target_destination) : "First Waypoint" : "" : "Must target a path_corner"
-	lane(choices) : "Lane" : 0 : " " =
-	[
-		0 : "Top"
-		1 : "Mid"
-		2 : "Bottom"
-	]
+input	SpawnNPCFromScript(integer) : "Spawn X npcs from the script."
 ]
 
 @PointClass base(DotaSpawnerBase) = npc_dota_scripted_spawner
@@ -436,5 +472,56 @@
 	other_blocker(target_destination) : "Other Blocker" : "" : " "
 	Hidden(boolean) : "Hidden" : 1 : " "		
 	input Toggle(void)
+]
+
+
+@PointClass base(Targetname) occluder(radius) color(255 0 0) = env_occluder : 
+	"A test entity for radius occluding for the Fog of War system."
+[
+	radius(float) : "Radius" : 128 : "The radius around this occluder."
+]
+
+@PointClass base(Targetname) line_occluder(radius) color(255 0 0) = env_line_occluder : 
+	"A test entity for line occluding for the Fog of War system."
+[
+	radius(float) : "Radius" : 128 : "The radius around this occluder."
+]
+
+@PointClass base(Targetname) viewer(radius) color(0 255 0) = env_viewer : 
+	"A test entity for viewing for the Fog of War system."
+[
+	radius(float) : "Radius" : 256 : "The radius around this viewer."
+]
+
+@PointClass base(Targetname, EnableDisable) sphere(minfalloff) sphere(maxfalloff) iconsprite("editor/color_correction.vmt") = dota_color_correction : 
+	"An entity to control the color correction in the map."
+[
+	minfalloff(float) : "Min Radius" : "200.0"   : "This is the distance at which this color correction is in 100% control"
+	maxfalloff(float) : "Max Radius"   : "400.0" : "This is the distance where this color correction starts taking effect."
+	filename(string)  : "Lookup Table Filename"			: ""	  : "This is the lookup table filename"
+]
+
+@PointClass base(Targetname) size(-1 -1 0, 1 1 1) color(80 150 225) studio("models/editor/overlay_helper.mdl") sphere(fademindist) sphere(fademaxdist) overlay() = info_overlay : 
+	"An entity that places an overlay on the world." 
+[
+	material(material) : "Material"
+	sides(sidelist) : "Brush faces"
+	RenderOrder(integer) : "Render Order" : 0 : "Higher values render after lower values. This value can be 0-3."
+	StartU(float) : "U Start" : "0.0"
+	EndU(float) : "U End" : "1.0"
+	StartV(float) : "V Start" : "0.0"
+	EndV(float) : "V End" : "1.0"
+	BasisOrigin(Vector) readonly : "Overlay Basis Origin(Read-Only)"
+	BasisU(Vector) readonly : "Overlay Basis U(Read-Only)"
+	BasisV(Vector) readonly : "Overlay Basis V(Read-Only)"
+	BasisNormal(Vector) readonly : "Overlay Basis Normal(Read-Only)"
+	uv0(vector) readonly : "Overlay Point 1(Read-Only)"
+	uv1(vector) readonly : "Overlay Point 2(Read-Only)"
+	uv2(vector) readonly : "Overlay Point 3(Read-Only)"
+	uv3(vector) readonly : "Overlay Point 4(Read-Only)"
+	fademindist(float) : "Start Fade Dist" : -1 : "Distance at which the overlay starts to fade (<0 = use fademaxdist)."
+	fademaxdist(float) : "End Fade Dist" : 0 : "Maximum distance at which the overlay is visible (0 = don't fade out)."
+	
+	customFlag(boolean) : "Penguinwizzard's flag that needs a name" : "0" : " "
 ]
 
