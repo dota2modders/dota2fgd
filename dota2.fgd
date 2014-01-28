@@ -522,6 +522,6 @@ input	SpawnNPCFromScript(integer) : "Spawn X npcs from the script."
 	fademindist(float) : "Start Fade Dist" : -1 : "Distance at which the overlay starts to fade (<0 = use fademaxdist)."
 	fademaxdist(float) : "End Fade Dist" : 0 : "Maximum distance at which the overlay is visible (0 = don't fade out)."
 	
-	customFlag(boolean) : "Penguinwizzard's flag that needs a name" : "0" : " "
+	hideOnLV(boolean) : "Hide under Low Violence" : "0" : "When set to 1, this overlay is not displayed in Low-Violence mode."
 ]
 
